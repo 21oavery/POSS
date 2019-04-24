@@ -4,7 +4,7 @@
     console.log("Starting screen...");
     let screen = null;
     let screenX, screenY;
-    (function {
+    (function() {
         let se = document.getElementById("screen");
         if (se == null) {
             console.log("[ERROR] Could not find screen");
@@ -28,6 +28,10 @@
     let nxtPID = 0;
     let processes = [];
     let sysCall = function(e, pid) {
+        
+        switch (e.id | 0) {
+            case 0: // Open file
+                if 
     };
     let errHandle = function(e, pid) {
     };
@@ -36,8 +40,8 @@
         let w = new Worker("");
         w.onmessage = function(e) {return sysCall(e, pid)};
         w.onerror = function(e) {return errHandle(e, pid)};
-        // priority, worker
-        processes[pid] = [0, w]
+        // priority, worker, handles
+        processes[pid] = [0, w, []]
     };
     console.log("Setting up dynamic library system...");
     let dyn = {};
@@ -45,6 +49,6 @@
     let addLibrary = function(env, libName) {
         let d = dyn[libName];
         if (d == null) dyn[libName] = d = loadLibrary(libName);
-        for ()
     };
     console.log("Done, running init...");
+})();
