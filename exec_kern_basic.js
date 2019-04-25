@@ -27,8 +27,7 @@
     console.log("Setting up thread system");
     let nxtPID = 0;
     let processes = [];
-    let sysCall = function(e, pid) {
-        
+    let sysCall = function(pid) {
         switch (e.id | 0) {
             case 0: // Open file
                 if 
@@ -38,10 +37,10 @@
     let addProcess = function(f) {
         let pid = nxtPID++;
         let w = new Worker("");
-        w.onmessage = function(e) {return sysCall(e, pid)};
-        w.onerror = function(e) {return errHandle(e, pid)};
-        // priority, worker, handles
-        processes[pid] = [0, w, []]
+        w.onmessage = function(e) {return sysCall(pid)};
+        w.onerror = function(e) {return errHandle(pid)};
+        // priority, worker, handles, mem_buffer
+        processes[pid] = [0, w, [], new SharedArrayBuffer()]
     };
     console.log("Setting up dynamic library system...");
     let dyn = {};
