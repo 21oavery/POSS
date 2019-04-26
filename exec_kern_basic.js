@@ -24,6 +24,23 @@
     let fsBin = {};
     let fsMap = {};
     let defaultMap = function(f) {return null};
+    let fs = {
+        "getPath": function(name) {
+            name = name + "";
+            let path = [];
+            let sPos = -1;
+            for (let i = 0; i < name.length; i++) {
+                let c = name.charAt(i);
+                switch (c) {
+                    case "\\":
+                    case "/":
+                        if (sPos !== -1) {
+                            path.append();
+        "seperate": function(name)
+        "_getFile": function(name)
+        "list": function()
+        "read": function()
+    };
     console.log("Setting up thread system");
     let nxtPID = 0;
     let processes = [];
@@ -44,10 +61,7 @@
     };
     console.log("Setting up dynamic library system...");
     let dyn = {};
-    let loadLibrary = function(file) {};
-    let addLibrary = function(env, libName) {
-        let d = dyn[libName];
-        if (d == null) dyn[libName] = d = loadLibrary(libName);
-    };
+    let link = function(paths, name) {
+        
     console.log("Done, running init...");
 })();
