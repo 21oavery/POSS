@@ -35,7 +35,10 @@
                     case "\\":
                     case "/":
                         if (sPos !== -1) {
-                            path.append();
+                            let sNew = name.substring(sPos, i);
+                            if (sNew == "..") {
+                                if (path.length === 0) return null;
+                                path.
         "seperate": function(name)
         "_getFile": function(name)
         "list": function()
