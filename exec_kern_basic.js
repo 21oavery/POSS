@@ -39,11 +39,11 @@
         id = id | 0;
         let u = users[id];
         if (u === null) throw "User does not exist";
+        groupId = groupId | 0;
         let p = u[1];
         let l = p.length;
         for (let i = 0; i < l; i++) {
-            p
-        groupId = groupId | 0;
+            if (p[i] === groupId)
         if (groups[groupId] == null) throw "Group does not exist";
         return users
     };
