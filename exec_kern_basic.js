@@ -26,13 +26,15 @@
     console.log("Loading kernal...");
     let kernalMem = new WebAssembly.Memory({"initial": 256});
     WebAssembly.instantiateStreaming(fetch("kern.wasm"), {"env": {
-        "__linear_memory": kernalMem,
-        "__indirect_function_table": new WebAssembly.Table({"initial": 0, "element": "anyfunc"}),
+        "memory": kernalMem,
         "conlog": function(offset, len) {
             var data = new Uint8Array(kernalMem.buffer, offset, len);
-            console.log(new TextDecoder("utf8").decode(data));
+            console.log(offset);
+            console.log(data);
+            //console.log(new TextDecoder("ansi").decode(data));
         }
     }}).then(mod => {
         console.log(mod);
+        mod.instance.exports._start();
     });
 })();
